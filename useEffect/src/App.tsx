@@ -6,9 +6,13 @@ import { useState, useEffect } from 'react';
 function App() {
   const [count, setCount] = useState(0);
 
+  const logResult = () => {
+    return 2 + 2;
+  };
+
   useEffect(() => {
     setCount((prev) => prev + 1);
-  }, []);
+  }, [logResult]);
 
   return (
     <div>
@@ -18,6 +22,3 @@ function App() {
 }
 
 export default App;
-/*
-App.tsx:10 Warning: Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.
-*/

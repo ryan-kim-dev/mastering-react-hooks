@@ -50,6 +50,42 @@ useEffect(() => {
 
 ### 1.2 함수를 의존성 배열의 요소로 사용 할 경우
 
+```tsx
+function App() {
+  const [count, setCount] = useState(0);
+
+  const logResult = () => {
+    return 2 + 2;
+  };
+
+  useEffect(() => {
+    setCount((prev) => prev + 1);
+  }, [logResult]);
+
+  return (
+    <div>
+      <p>현재 카운트: {count}</p>
+    </div>
+  );
+}
+
+export default App;
+```
+
+```shell
+The 'logResult' function makes the dependencies of useEffect Hook (at line 15) change on every render.
+Move it inside the useEffect callback.
+Alternatively, wrap the definition of 'logResult' in its own useCallback() Hook.
+eslintreact-hooks/exhaustive-deps
+```
+
+```
+Warning: Maximum update depth exceeded.
+This can happen when a component calls setState inside useEffect,
+but useEffect either doesn't have a dependency array,
+or one of the dependencies changes on every render.
+```
+
 ### 1.3 배열을 의존성 배열의 요소로 사용 할 경우
 
 ### 1.4 객체를 의존성 배열의 요소로 사용 할 경우
